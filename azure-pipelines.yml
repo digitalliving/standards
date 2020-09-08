@@ -1,5 +1,5 @@
 trigger:
-- master
+  - master
 
 steps:
   - script: "echo New standards available"

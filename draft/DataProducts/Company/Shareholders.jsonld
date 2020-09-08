@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "vocab": {
+      "@id": "https://vocabulary.lifeengine.io/Business/#",
+      "@prefix": true
+    },
+    "legal": {
+        "@id": "https://vocabulary.lifeengine.io/Legislation/#",
+        "@prefix": true
+    },
+    "shareSeries": {
+      "@id": "vocab:shareSeries",
+      "@container": "@set"
+    },
+    "ownerships": {
+      "@id": "vocab:ownership",
+      "@container": "@set"
+    },
+    "totalShares": "vocab:totalShares",
+    "seriesName": "https://www.investopedia.com/terms/s/share_class.asp",
+    "votesPerShare": "https://www.investopedia.com/terms/v/votingshares.asp",
+    "owners": {
+      "@id": "https://www.investopedia.com/terms/s/shareholder.asp",
+      "@container": "@set"
+    },
+    "name": "legal:name",
+    "quantity": "vocab:quantity"
+  }
+}

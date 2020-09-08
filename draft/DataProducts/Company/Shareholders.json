@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Basic Shareholders Info",
-    "description": "Data Product for basic Shareholders info",
+    "description": "Data Product for Basic Shareholders info",
     "version": "1.0.0"
   },
   "paths": {
@@ -31,6 +31,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Item not found"
           },
           "422": {
             "description": "Validation Error",
@@ -134,7 +137,7 @@
           "companyId": {
             "title": "Company Id",
             "type": "string",
-            "description": "The ID of the company, only supports Finnish business IDs",
+            "description": "The ID of the company, only supports Finnish business ID's",
             "example": "2464491-9"
           }
         }
