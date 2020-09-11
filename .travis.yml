@@ -5,15 +5,21 @@ python:
 services:
   - docker
 
+cache:
+  pip: true
+  directories:
+    - $HOME/.cache/pre-commit
+
 before_install:
   - nvm install
-  - pip install pre-commit
+  - pip install pre-commit openapi-to-fastapi
   - docker build -t doc-build .
 
 install: true
 
 script:
   - pre-commit run --all-files || exit 1
+  - openapi-validator --path draft -v IhanStandardsValidator
   - ./travis-validation.sh
   - ./docker-run.sh
 
