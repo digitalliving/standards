@@ -9,6 +9,9 @@ The Digital Living core ontology can be found as a JSON-LD ontology file under
 The HTML version of the ontology documentation is hosted at our
 [Github Pages](https://standards.lifeengine.io/v1/)
 
+Specification for describing new standards can be found in
+[draft/DataProducts/README.md](draft/DataProducts/README.md).
+
 _Please note that this repository is under active development, and the IRIs and URIs in
 the ontology files are subject to change at any time._
 
