@@ -20,8 +20,24 @@
               "type": "string",
               "description": "HMAC-RSA256 signature for the request using Product Gateway's public key"
             },
-            "name": "x-signature",
+            "name": "X-Signature",
             "in": "header"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "description": "The login token."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Authorization-Provider",
+            "description": "The bare domain of the system that provided the token."
           }
         ],
         "requestBody": {

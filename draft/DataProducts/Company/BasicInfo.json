@@ -42,7 +42,25 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "description": "The login token."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Authorization-Provider",
+            "description": "The bare domain of the system that provided the token."
+          }
+        ]
       }
     }
   },
