@@ -1,0 +1,11 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "icd10": {
+      "@id": "http://bioportal.bioontology.org/ontologies/ICD10/#",
+      "@prefix": true
+    },
+    "asthma": "icd10:J45",
+    "diseaseOfInnerEar": "icd10:H83.9",
+  }
+}

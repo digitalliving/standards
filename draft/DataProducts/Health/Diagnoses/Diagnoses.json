@@ -1,0 +1,104 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Persons Diagnoses",
+    "description": "Data Product for user's diagnoses with ICD10 codes",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/Health/Diagnoses": {
+      "post": {
+        "summary": "Health/Diagnoses Data Product",
+        "description": "Health diagnoses in ICD codes",
+        "operationId": "health_diagnoses_post",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "description": "The login token."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Authorization-Provider",
+            "description": "The bare domain of the system that provided the token."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthDiagnosesResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HealthDiagnosesResponse": {
+        "title": "HealthDiagnosesResponse",
+        "required": ["diagnoses"],
+        "type": "object",
+        "properties": {
+          "diagnoses": {
+            "type": "array",
+            "items": {
+              "title": "Users diagnoses in ICD10 code",
+              "type": "string",
+              "example": "icd10:J45"
+            }
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": ["msg", "type"],
+        "type": "object",
+        "properties": {
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
