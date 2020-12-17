@@ -38,3 +38,10 @@ unnecessary work from everyone:
    or propose a change to an existing standard that could break backwards compatibility,
    you should submit the changes in the `draft` version. Afterwards we can figure out
    which release version they can go in.
+
+You can run the automatic validations also via Docker locally using the
+`Dockerfile.validate` -configuration:
+
+```bash
+docker build . -f Dockerfile.validate
+```

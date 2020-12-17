@@ -1,0 +1,40 @@
+# Latest stable Python 3 on Debian Slim image
+FROM python:3-slim AS standards-validation
+
+ENV NVM_DIR="/usr/local/nvm" \
+    PATH=$PATH:/root/.nvm
+
+# NVM depends on bash
+SHELL ["/bin/bash", "-c"]
+
+# Install required tools and packages
+RUN set -exuo pipefail \
+ && echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
+ && mkdir -p $NVM_DIR \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends \
+        curl \
+        build-essential \
+        ca-certificates \
+        libssl-dev \
+        git \
+ && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash \
+ && apt-get clean
+
+# Install dependencies for tools
+WORKDIR /src
+COPY .nvmrc requirements-validate.txt /src/
+
+# NVM is super verbose bash so disabling -x for it
+RUN source $NVM_DIR/nvm.sh --no-use \
+ && set -exuo pipefail \
+ && set +x && nvm install && set -x \
+ && pip install -r requirements-validate.txt
+
+# Run validation
+COPY . /src/
+
+RUN source $NVM_DIR/nvm.sh \
+ && set -exuo pipefail \
+ && openapi-validator --path draft -v IhanStandardsValidator \
+ && pre-commit run --all-files

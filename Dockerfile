@@ -15,3 +15,4 @@ RUN apk del \
     linux-headers
 
 COPY . /src
+RUN rm -rf .git
