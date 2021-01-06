@@ -2,8 +2,17 @@ Standards for
 [Data Products](https://github.com/digitalliving/standards/tree/master/draft/DataProducts)
 must conform to the following set of rules:
 
-_Note: the rules below assume that each standard is defined as an OpenAPI 3.0 spec file
-in the corresponding path._
+## Required files per standard
+
+Each standard must be described in 3 files:
+
+- `<standard_name>.json` - OpenAPI spec defining POST route for the standard
+- `<standard_name>.jsonld` - [JSON-LD](https://json-ld.org) definition of standard attributes
+- `<standard_name>.html` - Human representation of OpenAPI spec. For example, web page using [Swagger UI](https://swagger.io/tools/swagger-ui/)
+
+## OpenAPI scheme 
+
+_Note: the rules below apply for OpenAPI 3.0 spec files of each standard._
 
 ### Spec file must define only one POST endpoint
 
@@ -191,3 +200,35 @@ in the corresponding path._
   }
 }
 ```
+
+### Spec file must not define any severs
+
+> ❌ Wrong: Server URLs provided
+
+```json
+{
+  "servers": [
+    {"url": "https://example.com"}
+  ]
+}
+```
+
+### Spec file must not define security section for API endpoint
+
+> ❌ Wrong: Security section is defined for path
+
+```json
+{
+  "paths": {
+    "/AirQuality/Current": {
+      "post": {
+        "security": {
+          "ApiKeyAuth": []
+        }
+      }
+    }
+  }
+}
+```
+
+
