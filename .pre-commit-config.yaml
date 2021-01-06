@@ -2,7 +2,7 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.5.0
+    rev: v3.4.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -11,6 +11,12 @@ repos:
     hooks:
       - id: shellcheck
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: master
+    rev: v2.2.1
     hooks:
       - id: prettier
+  - repo: https://github.com/digitalliving/openapi-to-fastapi
+    rev: master
+    hooks:
+      - id: openapi-validator
+        files: ".*?draft/DataProducts/.*?(json|jsonld)$"
+        args: ["--path", "./draft/DataProducts", "-v", "IhanStandardsValidator"]

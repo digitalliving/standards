@@ -6,6 +6,6 @@
       "@prefix": true
     },
     "asthma": "icd10:J45",
-    "diseaseOfInnerEar": "icd10:H83.9",
+    "diseaseOfInnerEar": "icd10:H83.9"
   }
 }

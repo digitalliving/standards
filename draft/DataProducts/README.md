@@ -7,10 +7,12 @@ must conform to the following set of rules:
 Each standard must be described in 3 files:
 
 - `<standard_name>.json` - OpenAPI spec defining POST route for the standard
-- `<standard_name>.jsonld` - [JSON-LD](https://json-ld.org) definition of standard attributes
-- `<standard_name>.html` - Human representation of OpenAPI spec. For example, web page using [Swagger UI](https://swagger.io/tools/swagger-ui/)
+- `<standard_name>.jsonld` - [JSON-LD](https://json-ld.org) definition of standard
+  attributes
+- `<standard_name>.html` - Human representation of OpenAPI spec. For example, web page
+  using [Swagger UI](https://swagger.io/tools/swagger-ui/)
 
-## OpenAPI scheme 
+## OpenAPI scheme
 
 _Note: the rules below apply for OpenAPI 3.0 spec files of each standard._
 
@@ -207,9 +209,7 @@ _Note: the rules below apply for OpenAPI 3.0 spec files of each standard._
 
 ```json
 {
-  "servers": [
-    {"url": "https://example.com"}
-  ]
+  "servers": [{ "url": "https://example.com" }]
 }
 ```
 
@@ -230,5 +230,3 @@ _Note: the rules below apply for OpenAPI 3.0 spec files of each standard._
   }
 }
 ```
-
-
