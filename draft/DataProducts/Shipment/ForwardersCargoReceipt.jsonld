@@ -1,0 +1,44 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "fbcg": {
+      "@id": "https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/Guaranty/",
+      "@prefix": true
+    },
+    "legal": {
+      "@id": "https://vocabulary.lifeengine.io/Legal/",
+      "@prefix": true
+    },
+    "schema": {
+      "@id": "https://schema.org/",
+      "@prefix": true
+    },
+    "billing": {
+      "@id": "https://docs.peppol.eu/poacc/billing/3.0/syntax/",
+      "@prefix": true
+    },
+    "le": {
+      "@id": "https://vocabulary.lifeengine.io/",
+      "@prefix": true
+    },
+    "lcNumber": "fbcg:LetterOfCredit",
+    "exporterName": "legal:#Name",
+    "importerName": "legal:#Name",
+    "placeOfReceipt": "schema:location",
+    "placeOfLoading": "schema:location",
+    "placeOfDischarge": "schema:location",
+    "finalDestination": "schema:location",
+    "finalDestinationAddress": "schema:address",
+    "modeOfDelivery": "billing:ubl-invoice/cac-Delivery/",
+    "forwarderName": "legal:#Name",
+    "forwarderContactPersonName": "legal:#Name",
+    "forwarderContactPersonPhone": "schema:telephone",
+    "carrierName": "legal:#Name",
+    "handlingUnits": "schema:Number",
+    "totalGrossWeight": "schema:weight",
+    "totalNetWeight": "schema:weight",
+    "totalVolume": "le:Measures/#TotalVolume",
+    "issueDate": "schema:Date",
+    "statement": "legal:#Statement"
+  }
+}

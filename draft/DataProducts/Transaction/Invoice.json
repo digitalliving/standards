@@ -1,0 +1,292 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Invoice",
+    "description": "Data Product for Invoice",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/Transaction/Invoice": {
+      "post": {
+        "summary": "Invoice",
+        "operationId": "requestInvoiceData",
+        "parameters": [
+          {
+            "description": "HMAC-RSA256 signature for the request using Product Gateway's public key",
+            "required": false,
+            "schema": {
+              "title": "Request signature",
+              "type": "string",
+              "description": "HMAC-RSA256 signature for the request using Product Gateway's public key"
+            },
+            "name": "x-signature",
+            "in": "header"
+          },
+          {
+            "description": "The login token.",
+            "required": false,
+            "schema": {
+              "title": "Authorization",
+              "type": "string",
+              "description": "The login token."
+            },
+            "name": "authorization",
+            "in": "header"
+          },
+          {
+            "description": "The bare domain of the system that provided the token.",
+            "required": false,
+            "schema": {
+              "title": "Authorization provider",
+              "type": "string",
+              "description": "The bare domain of the system that provided the token."
+            },
+            "name": "x-authorization-provider",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvoiceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invoice"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "Invoice": {
+        "title": "Invoice",
+        "required": [
+          "amountToBePaid",
+          "bankContactBic",
+          "bankContactIban",
+          "bankContactName",
+          "buyerContactPersonName",
+          "buyerName",
+          "buyerVatNumber",
+          "contractReference",
+          "countryOfOrigin",
+          "currencyCode",
+          "descriptionOfGoods",
+          "handlingUnits",
+          "incoterm",
+          "incotermPlace",
+          "invoiceNote",
+          "invoiceReference",
+          "issueDate",
+          "lcNumber",
+          "letterOfCreditValue",
+          "modeOfDelivery",
+          "orderReference",
+          "projectReference",
+          "sellerContactPersonName",
+          "sellerName",
+          "sellerVatNumber",
+          "taxRate",
+          "totalGrossWeight",
+          "totalNetWeight",
+          "totalVolume",
+          "valueOfShipment"
+        ],
+        "type": "object",
+        "properties": {
+          "amountToBePaid": {
+            "title": "Amount to be paid",
+            "type": "number"
+          },
+          "bankContactBic": {
+            "title": "Bank contact BIC",
+            "type": "string"
+          },
+          "bankContactIban": {
+            "title": "Bank contact IBAN",
+            "type": "string"
+          },
+          "bankContactName": {
+            "title": "Bank contact name",
+            "type": "string"
+          },
+          "buyerContactPersonName": {
+            "title": "Buyer contact person name",
+            "type": "string"
+          },
+          "buyerName": {
+            "title": "Buyer name",
+            "type": "string"
+          },
+          "buyerVatNumber": {
+            "title": "Buyer VAT number",
+            "type": "string"
+          },
+          "contractReference": {
+            "title": "Contract reference",
+            "type": "string"
+          },
+          "countryOfOrigin": {
+            "title": "Country of origin",
+            "type": "string"
+          },
+          "currencyCode": {
+            "title": "Currency code",
+            "type": "string"
+          },
+          "descriptionOfGoods": {
+            "title": "Description of goods",
+            "type": "string"
+          },
+          "handlingUnits": {
+            "title": "Handling units",
+            "type": "integer"
+          },
+          "incoterm": {
+            "title": "Incoterm",
+            "type": "string"
+          },
+          "incotermPlace": {
+            "title": "Incoterm place",
+            "type": "string"
+          },
+          "invoiceNote": {
+            "title": "Invoice note",
+            "type": "string"
+          },
+          "invoiceReference": {
+            "title": "Invoice reference",
+            "type": "string"
+          },
+          "issueDate": {
+            "title": "Issue date",
+            "type": "string",
+            "format": "date-time"
+          },
+          "lcNumber": {
+            "title": "LC number",
+            "type": "string"
+          },
+          "letterOfCreditValue": {
+            "title": "Letter of credit value",
+            "type": "integer"
+          },
+          "modeOfDelivery": {
+            "title": "Mode of delivery",
+            "type": "string"
+          },
+          "orderReference": {
+            "title": "Order reference",
+            "type": "string"
+          },
+          "projectReference": {
+            "title": "Project reference",
+            "type": "string"
+          },
+          "sellerContactPersonName": {
+            "title": "Seller contact person name",
+            "type": "string"
+          },
+          "sellerName": {
+            "title": "Seller name",
+            "type": "string"
+          },
+          "sellerVatNumber": {
+            "title": "Seller VAT number",
+            "type": "string"
+          },
+          "taxRate": {
+            "title": "Tax rate",
+            "type": "integer"
+          },
+          "totalGrossWeight": {
+            "title": "Total gross weight",
+            "type": "number"
+          },
+          "totalNetWeight": {
+            "title": "Total net weight",
+            "type": "number"
+          },
+          "totalVolume": {
+            "title": "Total volume",
+            "type": "number"
+          },
+          "valueOfShipment": {
+            "title": "Value of shipment",
+            "type": "number"
+          }
+        }
+      },
+      "InvoiceRequest": {
+        "title": "InvoiceRequest",
+        "required": ["shipmentId"],
+        "type": "object",
+        "properties": {
+          "shipmentId": {
+            "title": "Shipment ID",
+            "type": "string"
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": ["loc", "msg", "type"],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Packing List",
+    "description": "Data Product for Packing List",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/Shipment/PackingList": {
+      "post": {
+        "summary": "Packing List",
+        "operationId": "requestPackingListData",
+        "parameters": [
+          {
+            "description": "HMAC-RSA256 signature for the request using Product Gateway's public key",
+            "required": false,
+            "schema": {
+              "title": "Request signature",
+              "type": "string",
+              "description": "HMAC-RSA256 signature for the request using Product Gateway's public key"
+            },
+            "name": "x-signature",
+            "in": "header"
+          },
+          {
+            "description": "The login token.",
+            "required": false,
+            "schema": {
+              "title": "Authorization",
+              "type": "string",
+              "description": "The login token."
+            },
+            "name": "authorization",
+            "in": "header"
+          },
+          {
+            "description": "The bare domain of the system that provided the token.",
+            "required": false,
+            "schema": {
+              "title": "Authorization provider",
+              "type": "string",
+              "description": "The bare domain of the system that provided the token."
+            },
+            "name": "x-authorization-provider",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PackingListRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PackingList"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "PackingList": {
+        "title": "PackingList",
+        "required": [
+          "contractReference",
+          "descriptionOfGoods",
+          "finalDestination",
+          "handlingUnits",
+          "incoterm",
+          "incotermPlace",
+          "lcNumber",
+          "packingDescription",
+          "packingReference",
+          "placeOfReceipt",
+          "productItems",
+          "totalGrossWeight",
+          "totalNetWeight",
+          "totalVolume"
+        ],
+        "type": "object",
+        "properties": {
+          "contractReference": {
+            "title": "Contract reference",
+            "type": "string"
+          },
+          "descriptionOfGoods": {
+            "title": "Description of goods",
+            "type": "string"
+          },
+          "finalDestination": {
+            "title": "Final destination",
+            "type": "string"
+          },
+          "handlingUnits": {
+            "title": "Handling units",
+            "type": "integer"
+          },
+          "incoterm": {
+            "title": "Incoterm",
+            "type": "string"
+          },
+          "incotermPlace": {
+            "title": "Incoterm place",
+            "type": "string"
+          },
+          "lcNumber": {
+            "title": "LC number",
+            "type": "string"
+          },
+          "packingDescription": {
+            "title": "Packing description",
+            "type": "string"
+          },
+          "packingReference": {
+            "title": "Packing reference",
+            "type": "string"
+          },
+          "placeOfReceipt": {
+            "title": "Place of receipt",
+            "type": "string"
+          },
+          "productItems": {
+            "title": "Product items",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductItem"
+            }
+          },
+          "totalGrossWeight": {
+            "title": "Total gross weight",
+            "type": "number"
+          },
+          "totalNetWeight": {
+            "title": "Total net weight",
+            "type": "number"
+          },
+          "totalVolume": {
+            "title": "Total volume",
+            "type": "number"
+          }
+        }
+      },
+      "PackingListRequest": {
+        "title": "PackingListRequest",
+        "required": ["shipmentId"],
+        "type": "object",
+        "properties": {
+          "shipmentId": {
+            "title": "Shipment ID",
+            "type": "string"
+          }
+        }
+      },
+      "ProductItem": {
+        "title": "ProductItem",
+        "required": ["productCode", "productCount"],
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "title": "Product code",
+            "type": "string"
+          },
+          "productCount": {
+            "title": "Product count",
+            "type": "integer"
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": ["loc", "msg", "type"],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

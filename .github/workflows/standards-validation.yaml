@@ -1,0 +1,32 @@
+name: Validate Data Product Standards
+
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize, edited]
+
+jobs:
+  StandardsValidation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Install Dependencies
+        run: pip install openapi-to-fastapi
+      - name: Validate standards
+        run: openapi-validator --path draft -v IhanStandardsValidator
+  CodeLinters:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Install Dependencies
+        run: pip install pre-commit
+      - name: Run pre-commit
+        run: pre-commit run --all-files || exit 1
