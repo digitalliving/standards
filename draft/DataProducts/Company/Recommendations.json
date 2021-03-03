@@ -1,0 +1,136 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Company Recommendations",
+    "description": "Data Product for company recommendations score",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/Company/Recommendations": {
+      "post": {
+        "summary": "Company/Recommendations Data Product",
+        "description": "Company recommendations score",
+        "operationId": "requestCompanyRecommendationData",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecommendationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecommendationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "description": "The login token."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Authorization-Provider",
+            "description": "The bare domain of the system that provided the token."
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RecommendationRequest": {
+        "title": "RecommendationRequest",
+        "required": ["keywords"],
+        "type": "object",
+        "properties": {
+          "keywords": {
+            "title": "Keywords",
+            "type": "string",
+            "description": "Keyword data to base recommendations on",
+            "example": "Looking for data product companies to invest on"
+          }
+        }
+      },
+      "RecommendationResponse": {
+        "title": "RecommendationResponse",
+        "required": ["score", "companyId"],
+        "type": "object",
+        "properties": {
+          "score": {
+            "title": "Recommendation score of the company",
+            "type": "number",
+            "example": "231"
+          },
+          "companyId": {
+            "title": "ID of the company",
+            "type": "string",
+            "example": "2464491-9"
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": ["loc", "msg", "type"],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
