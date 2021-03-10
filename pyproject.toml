@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "standards"
+version = "0.1.0"
+description = "Digital Living Standards"
+authors = ["Digital Living International Ltd"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+invoke = "^1.4.1"
+Jinja2 = "^2.11.3"
+
+[build-system]
+requires = ["poetry>=1.0.0"]
+build-backend = "poetry.masonry.api"

@@ -18,5 +18,5 @@ repos:
     rev: master
     hooks:
       - id: openapi-validator
-        files: ".*?draft/DataProducts/.*?(json|jsonld)$"
+        files: ".*?draft/DataProducts/.*?json$"
         args: ["--path", "./draft/DataProducts", "-v", "IhanStandardsValidator"]

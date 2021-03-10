@@ -1,0 +1,39 @@
+name: Deploy standards to GitHub pages
+
+on:
+  push:
+    branches:
+      - master
+      - cleanup
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Bootstrap HTML files for standards
+        run: poetry run invoke bootstrap-html
+
+      - name: Prepare dist dir
+        run: mkdir dist && cp -r draft dist
+
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages-test
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

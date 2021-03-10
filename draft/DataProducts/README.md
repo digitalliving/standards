@@ -4,11 +4,9 @@ must conform to the following set of rules:
 
 ## Required files per standard
 
-Each standard must be described in 3 files:
+Each standard must be described in 2 files:
 
 - `<standard_name>.json` - OpenAPI spec defining POST route for the standard
-- `<standard_name>.jsonld` - [JSON-LD](https://json-ld.org) definition of standard
-  attributes
 - `<standard_name>.html` - Human representation of OpenAPI spec. For example, web page
   using [Swagger UI](https://swagger.io/tools/swagger-ui/)
 

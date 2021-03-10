@@ -23,7 +23,7 @@ RUN set -exuo pipefail \
 
 # Install dependencies for tools
 WORKDIR /src
-COPY .nvmrc requirements-validate.txt /src/
+COPY .nvmrc utils/requirements-validate.txt /src/
 
 # NVM is super verbose bash so disabling -x for it
 RUN source $NVM_DIR/nvm.sh --no-use \

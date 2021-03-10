@@ -1,0 +1,2 @@
+pre-commit ~= 2.9.3
+openapi-to-fastapi ~= 0.1.1
