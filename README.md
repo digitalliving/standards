@@ -1,19 +1,12 @@
 # Digital Living Standards repository
 
-This repository contains everything we need to standardize the Digital Living LifeEngine
-APIs.
+This repository contains everything we need to standardize Digital Living APIs.
 
-The Digital Living core ontology can be found as a JSON-LD ontology file under
-[Ontology/dli.jsonld](Ontology/dli.jsonld).
-
-The HTML version of the ontology documentation is hosted at our
-[Github Pages](https://standards.lifeengine.io/v1/)
-
-Specification for describing new standards can be found in
+Specification for describing data product standards can be found in
 [draft/DataProducts/README.md](draft/DataProducts/README.md).
 
-_Please note that this repository is under active development, and the IRIs and URIs in
-the ontology files are subject to change at any time._
+_Please note that this repository is under active development, and all the standards are
+subjects to change at any time._
 
 ## Contribution guidelines
 

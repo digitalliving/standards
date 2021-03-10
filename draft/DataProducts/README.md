@@ -2,17 +2,14 @@ Standards for
 [Data Products](https://github.com/digitalliving/standards/tree/master/draft/DataProducts)
 must conform to the following set of rules:
 
-## Required files per standard
+## Standard specification format
 
-Each standard must be described in 2 files:
-
-- `<standard_name>.json` - OpenAPI spec defining POST route for the standard
-- `<standard_name>.html` - Human representation of OpenAPI spec. For example, web page
-  using [Swagger UI](https://swagger.io/tools/swagger-ui/)
+Each standard must be described in corresponding JSON file, which is an OpenAPI 3.0
+spec. Name of this file must be in UpperCamelCase.
 
 ## OpenAPI scheme
 
-_Note: the rules below apply for OpenAPI 3.0 spec files of each standard._
+_Rules below are applied for each standard._
 
 ### Spec file must define only one POST endpoint
 
