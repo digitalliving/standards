@@ -1,0 +1,237 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Cargo Receipt",
+    "description": "Data Product for Cargo Receipt",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/Shipment/ForwardersCargoReceipt": {
+      "post": {
+        "summary": "Cargo Receipt",
+        "operationId": "requestForwardersCargoReceiptData",
+        "parameters": [
+          {
+            "description": "HMAC-RSA256 signature for the request using Product Gateway's public key",
+            "required": false,
+            "schema": {
+              "title": "Request signature",
+              "type": "string",
+              "description": "HMAC-RSA256 signature for the request using Product Gateway's public key"
+            },
+            "name": "x-signature",
+            "in": "header"
+          },
+          {
+            "description": "The login token.",
+            "required": false,
+            "schema": {
+              "title": "Authorization",
+              "type": "string",
+              "description": "The login token."
+            },
+            "name": "authorization",
+            "in": "header"
+          },
+          {
+            "description": "The bare domain of the system that provided the token.",
+            "required": false,
+            "schema": {
+              "title": "Authorization provider",
+              "type": "string",
+              "description": "The bare domain of the system that provided the token."
+            },
+            "name": "x-authorization-provider",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForwardersCargoReceiptRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForwardersCargoReceipt"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ForwardersCargoReceipt": {
+        "title": "ForwardersCargoReceipt",
+        "required": [
+          "carrierName",
+          "exporterName",
+          "finalDestination",
+          "finalDestinationAddress",
+          "forwarderContactPersonName",
+          "forwarderContactPersonPhone",
+          "forwarderName",
+          "handlingUnits",
+          "importerName",
+          "issueDate",
+          "lcNumber",
+          "modeOfDelivery",
+          "placeOfDischarge",
+          "placeOfLoading",
+          "placeOfReceipt",
+          "statement",
+          "totalGrossWeight",
+          "totalNetWeight",
+          "totalVolume"
+        ],
+        "type": "object",
+        "properties": {
+          "carrierName": {
+            "title": "Carrier name",
+            "type": "string"
+          },
+          "exporterName": {
+            "title": "Exporter name",
+            "type": "string"
+          },
+          "finalDestination": {
+            "title": "Final destination",
+            "type": "string"
+          },
+          "finalDestinationAddress": {
+            "title": "Final destination address",
+            "type": "string"
+          },
+          "forwarderContactPersonName": {
+            "title": "Forwarder contact person name",
+            "type": "string"
+          },
+          "forwarderContactPersonPhone": {
+            "title": "Forwarder contact person phone",
+            "type": "string"
+          },
+          "forwarderName": {
+            "title": "Forwarder name",
+            "type": "string"
+          },
+          "handlingUnits": {
+            "title": "Handling units",
+            "type": "integer"
+          },
+          "importerName": {
+            "title": "Importer name",
+            "type": "string"
+          },
+          "issueDate": {
+            "title": "Issue date",
+            "type": "string",
+            "format": "date-time"
+          },
+          "lcNumber": {
+            "title": "LC number",
+            "type": "string"
+          },
+          "modeOfDelivery": {
+            "title": "Mode of delivery",
+            "type": "string"
+          },
+          "placeOfDischarge": {
+            "title": "Place of discharge",
+            "type": "string"
+          },
+          "placeOfLoading": {
+            "title": "Place of loading",
+            "type": "string"
+          },
+          "placeOfReceipt": {
+            "title": "Place of receipt",
+            "type": "string"
+          },
+          "statement": {
+            "title": "Statement",
+            "type": "string"
+          },
+          "totalGrossWeight": {
+            "title": "Total gross weight",
+            "type": "number"
+          },
+          "totalNetWeight": {
+            "title": "Total net weight",
+            "type": "number"
+          },
+          "totalVolume": {
+            "title": "Total volume",
+            "type": "number"
+          }
+        }
+      },
+      "ForwardersCargoReceiptRequest": {
+        "title": "ForwardersCargoReceiptRequest",
+        "required": ["shipmentId"],
+        "type": "object",
+        "properties": {
+          "shipmentId": {
+            "title": "Shipment ID",
+            "type": "string"
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": ["loc", "msg", "type"],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
