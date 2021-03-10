@@ -2,7 +2,8 @@
 FROM python:3-slim AS standards-validation
 
 ENV NVM_DIR="/usr/local/nvm" \
-    PATH=$PATH:/root/.nvm
+    PATH=$PATH:/root/.nvm \
+    NVM_VERSION=14
 
 # NVM depends on bash
 SHELL ["/bin/bash", "-c"]
@@ -23,10 +24,11 @@ RUN set -exuo pipefail \
 
 # Install dependencies for tools
 WORKDIR /src
-COPY .nvmrc utils/requirements-validate.txt /src/
+COPY utils/requirements-validate.txt /src/
 
 # NVM is super verbose bash so disabling -x for it
-RUN source $NVM_DIR/nvm.sh --no-use \
+RUN echo $NVM_VERSION > /src/.nvmrc \
+ && source $NVM_DIR/nvm.sh --no-use \
  && set -exuo pipefail \
  && set +x && nvm install && set -x \
  && pip install -r requirements-validate.txt
